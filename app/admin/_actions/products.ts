@@ -38,7 +38,7 @@ export const addProduct = async (prevState: unknown, formData: FormData) => {
     Buffer.from(await data.image.arrayBuffer()),
   );
 
-  db.product.create({
+  await db.product.create({
     data: {
       name: data.name,
       description: data.description,
