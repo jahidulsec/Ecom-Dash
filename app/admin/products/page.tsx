@@ -1,4 +1,4 @@
-import React from 'react'
+
 import PageHeader from '../_components/PageHeader'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
@@ -7,6 +7,7 @@ import db from '@/db/db'
 import { CheckCircle2, MoreVertical, XCircle } from 'lucide-react'
 import { formatCurrency, formatNumber } from '@/lib/formatters'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import { ActiveToggleDropDownItem, DeleteDropDownItem } from './_components/ProductsActions'
 
 const AdminProductPage = () => {
     return (
@@ -25,7 +26,6 @@ const AdminProductPage = () => {
 
 
 const ProductsTable = async () => {
-
     const products = await db.product.findMany({
         select: {
             id: true,
@@ -72,7 +72,7 @@ const ProductsTable = async () => {
                                             ) : (
                                                 <>
                                                     <span className='sr-only'>Unavailable</span>
-                                                    <XCircle />
+                                                    <XCircle className='stroke-destructive' />
                                                 </>
                                             )
                                     }
@@ -93,6 +93,8 @@ const ProductsTable = async () => {
                                             <DropdownMenuItem>
                                                 <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
                                             </DropdownMenuItem>
+                                            <ActiveToggleDropDownItem id={product.id} isAvailableForPurchase={product.isAvailableForPurchase} />
+                                            <DeleteDropDownItem id={product.id} disabled={product._count.orders > 0} />
                                         </DropdownMenuContent>
                                     </DropdownMenu>
 
