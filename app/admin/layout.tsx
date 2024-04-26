@@ -1,6 +1,6 @@
 import Nav, { NavLink } from "@/components/Nav"
 
-export const dynamic = 'forced-dynamic'
+export const dynamic = "force-dynamic"
 
 const AdminLayout = ({ children }: Readonly<{ children: React.ReactNode }>) => {
     return (

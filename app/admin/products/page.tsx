@@ -78,7 +78,7 @@ const ProductsTable = async () => {
                                     }
                                 </TableCell>
                                 <TableCell>{product.name}</TableCell>
-                                <TableCell>{formatCurrency(product.priceInCents)}</TableCell>
+                                <TableCell>{formatCurrency(product.priceInCents / 100)}</TableCell>
                                 <TableCell>{formatNumber(product._count.orders)}</TableCell>
                                 <TableCell>
                                     <DropdownMenu>
@@ -90,7 +90,7 @@ const ProductsTable = async () => {
                                             <DropdownMenuItem asChild>
                                                 <a href={`/admin/products/${product.id}/download`} download>Download</a>
                                             </DropdownMenuItem>
-                                            <DropdownMenuItem>
+                                            <DropdownMenuItem asChild>
                                                 <Link href={`/admin/products/${product.id}/edit`}>Edit</Link>
                                             </DropdownMenuItem>
                                             <ActiveToggleDropDownItem id={product.id} isAvailableForPurchase={product.isAvailableForPurchase} />
