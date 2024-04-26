@@ -20,10 +20,12 @@ const isAuthenticated = async (req: NextRequest) => {
     .toString()
     .split(":");
 
-    isValidPassword(password, "adbc")
-      return (
+  return (
     username === process.env.ADMIN_USERNAME &&
-    (await isValidPassword(password, process.env.HASHED_ADMIN_PASSWORD as string))
+    (await isValidPassword(
+      password,
+      process.env.HASHED_ADMIN_PASSWORD as string,
+    ))
   );
 };
 

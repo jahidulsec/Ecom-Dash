@@ -12,5 +12,6 @@ const hashPassword = async (password: string) => {
     new TextEncoder().encode(password),
   );
 
+  //   convert into base64
   return Buffer.from(arrayBuffer).toString("base64");
 };
