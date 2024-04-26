@@ -3,6 +3,7 @@ import db from "@/db/db"
 import { formatCurrency, formatNumber } from "@/lib/formatters"
 
 
+
 const getSalesData = async () => {
   const data = await db.order.aggregate({
     _sum: { pricePaidInCents: true },
@@ -36,11 +37,16 @@ const getProductData = async () => {
     db.product.count({ where: { isAvailableForPurchase: false } })
   ])
 
+  await wait(2000)
+
   return {
     activeCount, inactiveCount
   }
 }
 
+const wait = (duration: number) => {
+  return new Promise((resolve) => setTimeout(resolve, duration))
+}
 
 const AdminDashboard = async () => {
 
