@@ -37,15 +37,9 @@ const getProductData = async () => {
     db.product.count({ where: { isAvailableForPurchase: false } })
   ])
 
-  await wait(2000)
-
   return {
     activeCount, inactiveCount
   }
-}
-
-const wait = (duration: number) => {
-  return new Promise((resolve) => setTimeout(resolve, duration))
 }
 
 const AdminDashboard = async () => {
