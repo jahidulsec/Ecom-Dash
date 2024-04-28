@@ -27,7 +27,10 @@ const getUserData = async () => {
 
   return {
     userCount,
-    averageValuePerUser: userCount === 0 ? 0 : (orderData._sum.pricePaidInCents || 0) / userCount / 100
+    averageValuePerUser:
+      userCount === 0
+        ? 0
+        : (orderData._sum.pricePaidInCents || 0) / userCount / 100,
   }
 }
 
