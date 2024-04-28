@@ -55,7 +55,7 @@ const AdminDashboard = async () => {
       <DashboardCard
         title={`Sales`}
         subtitle={formatNumber(salesData.numberOfSales)}
-        body={formatCurrency(salesData.amount)} />
+        body={formatCurrency(salesData.amount / 100)} />
       <DashboardCard
         title={`Customers`}
         subtitle={`${formatNumber(userData.userCount)} Average Value`}
