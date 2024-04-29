@@ -66,7 +66,7 @@ const AdminDashboard = async () => {
       <DashboardCard
         title={`Active Products`}
         subtitle={`${formatNumber(productData.inactiveCount)} Inactive`}
-        body={formatCurrency(productData.activeCount)} />
+        body={formatNumber(productData.activeCount)} />
     </div>
   )
 }

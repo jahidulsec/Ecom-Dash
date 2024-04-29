@@ -1,4 +1,5 @@
 import db from "@/db/db";
+import PurchaseReceiptEmail from "@/email/PurchaseReceipt";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import Stripe from "stripe";
@@ -47,18 +48,18 @@ export const POST = async (req: NextRequest) => {
       select: { orders: { orderBy: { createdAt: "desc" }, take: 1 } },
     });
 
-    const downloadVerification = await db.downloadVerification.create({
+    const downloadVerification = (await db.downloadVerification.create({
       data: {
         productId,
         expiresAt: new Date(Date.now() + 1000 * 60 * 60 * 24),
       },
-    });
+    })).id;
 
     await resend.emails.send({
-        from: `Suppord <${process.env.SENDER_EMAIL}>`,
-        to: email,
-        subject: "Order Confirmation",
-        react: <h1>h1</h1>
+      from: `Suppord <${process.env.SENDER_EMAIL}>`,
+      to: email,
+      subject: "Order Confirmation",
+      react: <PurchaseReceiptEmail order={order} product={product} downloadVerificationId={downloadVerification} />
     })
 
   }
